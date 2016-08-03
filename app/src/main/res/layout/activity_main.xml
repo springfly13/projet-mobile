@@ -53,7 +53,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ma recherceh"
+        android:text="Ma recherche"
         android:id="@+id/button4"
         android:layout_marginLeft="0dp"
         android:layout_below="@+id/button2"
@@ -64,14 +64,12 @@
         android:layout_height="wrap_content"
         android:text="All evenements"
         android:id="@+id/button5"
+        android:onClick="onClick"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
 
-    <ListView
-        android:id="@+id/listView1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+
 
 
 </RelativeLayout>
