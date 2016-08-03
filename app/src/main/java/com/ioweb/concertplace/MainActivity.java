@@ -26,8 +26,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button buttonAllArtistes = (Button)findViewById(R.id.button5);
         buttonAllArtistes.setOnClickListener( this);
 
-        Button buttonTriArtistes = (Button)findViewById(R.id.button);
+        Button buttonTriArtistes = (Button)findViewById(R.id.buttonArtistes);
         buttonTriArtistes.setOnClickListener((View.OnClickListener) this);
+
+       /*Button buttonArtistesResearche = (Button)findViewById(R.id.button4);
+        buttonTriArtistes.setOnClickListener((View.OnClickListener) this);*/
 
     }
 
@@ -39,7 +42,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             {Intent intent = new Intent(this, NewActivity.class);
                 startActivity(intent);}
                 break;
-            case R.id.button:
+            /*case R.id.button4:
+            {Intent intentArtistesSearch = new Intent(this, ArtistesSearcheActivity.class);
+                startActivity(intentArtistesSearch);}
+                break;*/
+            case R.id.buttonArtistes:
             {Intent intentArtistes = new Intent(this, ArtistesSortActivity.class);
                 startActivity(intentArtistes);}
                 break;

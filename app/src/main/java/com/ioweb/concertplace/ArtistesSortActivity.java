@@ -17,7 +17,7 @@ public class ArtistesSortActivity extends AppCompatActivity {
         ListView listView = (ListView)findViewById(R.id.listView2);
         ArrayList<Artiste> listNamesSort = Artiste.sortListByArtistesName();
         ArrayAdapter adapter1 = new ArrayAdapter<Artiste>(
-                this, android.R.layout.simple_expandable_list_item_2, listNamesSort);
+                this, android.R.layout.simple_expandable_list_item_1, listNamesSort);
         listView.setAdapter(adapter1);
     }
 }
