@@ -23,46 +23,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //maValeur = savedInstanceState.getString("key");
-        //this.bundle = savedInstanceState;
         Button buttonAllArtistes = (Button)findViewById(R.id.button5);
-        buttonAllArtistes.setOnClickListener((View.OnClickListener) this);
-        //listView = (ListView)findViewById(R.id.listView1);
-    }
-    private void showListOfArtistes (){
+        buttonAllArtistes.setOnClickListener( this);
 
-        System.out.println("List of Artistes ");
-        /*for (int i=0; i<list.size(); i++) {
-            Artiste artisteInfo = list.get(i);
-            System.out.println(artisteInfo);
-        }*/
+        Button buttonTriArtistes = (Button)findViewById(R.id.button);
+        buttonTriArtistes.setOnClickListener((View.OnClickListener) this);
+
     }
 
-    /*@Override
-    public void onClick(View v) {
-        showListOfArtistes();
-
-    }*/
-
-    public void onClickOnButton(View view) {
-
-       // System.out.println("List of Artistes ");
-        //showListOfArtistes();
-    }
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(this, NewActivity.class);
-        startActivity(intent);
+        switch (v.getId()) {
+            case R.id.button5:
+            {Intent intent = new Intent(this, NewActivity.class);
+                startActivity(intent);}
+                break;
+            case R.id.button:
+            {Intent intentArtistes = new Intent(this, ArtistesSortActivity.class);
+                startActivity(intentArtistes);}
+                break;
+        }
 
-        //showListOfArtistes();
     }
 
-    /*@Override
-    protected void onListItemClick();
-    super.onListeItemClick (l, v, position, id);
-    Intent intent = new Intent(this, NetworkInfo.DetailedState);*/
 
-
-
+    public void onClickArtistes(View v) {
+        Intent intentArtistes = new Intent(this, ArtistesSortActivity.class);
+        startActivity(intentArtistes);
+    }
 }
