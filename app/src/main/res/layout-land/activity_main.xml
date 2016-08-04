@@ -27,36 +27,36 @@
 
 
     <Button
-        android:layout_width="93pt"
-        android:layout_height="30pt"
+        android:layout_width="158pt"
+        android:layout_height="55pt"
         android:text="Ma recherche"
         android:id="@+id/buttonArtistes"
         android:onClick="onClick"
         android:background="#74dde4"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_above="@+id/button5"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/imageView1" />
 
     <Button
-        android:layout_width="92pt"
-        android:layout_height="30pt"
+        android:layout_width="158pt"
+        android:layout_height="58pt"
         android:text="Mon artiste favori"
         android:id="@+id/button4"
         android:onClick="onClick"
         android:background="#70e776"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/buttonArtistes" />
 
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:src="@drawable/concert1big"
-        android:scaleType="fitXY"
+
         android:adjustViewBounds="true"
+        android:src="@drawable/concert1big"
         android:baselineAlignBottom="false"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/button5"
-        android:layout_below="@+id/button4" />
+        android:layout_alignParentTop="true" />
 
 
 
