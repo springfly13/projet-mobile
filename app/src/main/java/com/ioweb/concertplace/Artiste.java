@@ -56,6 +56,8 @@ public class Artiste {
         return sortedNames;
     }
 
+
+
     public String getCity() {
         return city;
     }
