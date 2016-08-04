@@ -48,6 +48,11 @@ public class ArtistesFavoriteActivity extends Activity implements View.OnClickLi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         FavoriteNames motCle = FavoriteNames.getFavoriteAsrtistes().get(position);
+
+        for (int i=0; i<Artiste.getListOfArtistes().size(); i++){
+            if (motCle.getName().equals(Artiste.getListOfArtistes().get(i).getName())) Artiste.getArtisteSchedul().add(Artiste.getListOfArtistes().get(i));
+        }
+
         Intent intent = new Intent(this, ArtisteFavoriteSchedulActivity.class);
         startActivity(intent);
 
