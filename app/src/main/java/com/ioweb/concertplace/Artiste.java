@@ -58,8 +58,7 @@ public class Artiste {
     private static ArrayList<Artiste> favoriteArtisteSchedul = new ArrayList<Artiste>();
 
     public static ArrayList<Artiste> getArtisteSchedul (){
-
-        return favoriteArtisteSchedul;
+         return favoriteArtisteSchedul;
     }
 
 
