@@ -41,7 +41,7 @@
     <Button
         android:layout_width="93pt"
         android:layout_height="30pt"
-        android:text="Artistes (A-Z)"
+        android:text="Ma recherche"
         android:id="@+id/buttonArtistes"
         android:onClick="onClick"
         android:layout_below="@+id/main_text_view"
@@ -52,7 +52,7 @@
     <Button
         android:layout_width="92pt"
         android:layout_height="30pt"
-        android:text="Ma recherche"
+        android:text="Mon artiste favori"
         android:id="@+id/button4"
         android:onClick="onClick"
         android:background="#70e776"
