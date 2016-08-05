@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -19,14 +20,26 @@ public class ArtistesFavoriteActivity extends Activity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artistes_favorite);
-        ListView listView = (ListView)findViewById(R.id.listView3);
+        final ListView listView = (ListView)findViewById(R.id.listView3);
 
-        ArrayList<FavoriteNames> listFavorite = FavoriteNames.getFavoriteAsrtistes();
-        ArrayAdapter adapter1 = new ArrayAdapter<FavoriteNames>(
+        final ArrayList<FavoriteNames> listFavorite = FavoriteNames.getFavoriteAsrtistes();
+        final ArrayAdapter adapter1 = new ArrayAdapter<FavoriteNames>(
                 this, android.R.layout.simple_expandable_list_item_1, listFavorite);
         listView.setAdapter(adapter1);
 
         listView.setOnItemClickListener(ArtistesFavoriteActivity.this);
+
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                           int arg2, long arg3) {
+                listFavorite.remove(arg2);
+                ArrayAdapter adapter = new ArrayAdapter<FavoriteNames> (ArtistesFavoriteActivity.this, android.R.layout.simple_expandable_list_item_1, listFavorite);
+                listView.setAdapter(adapter);
+                return true;
+            }
+        });
 
         Button buttonArtistesFavoriAjout = (Button)findViewById(R.id.buttonAjoutArtiste);
         buttonArtistesFavoriAjout.setOnClickListener((View.OnClickListener) this);
@@ -53,8 +66,11 @@ public class ArtistesFavoriteActivity extends Activity implements View.OnClickLi
             if (motCle.getName().equals(Artiste.getListOfArtistes().get(i).getName())) Artiste.getArtisteSchedul().add(Artiste.getListOfArtistes().get(i));
         }
 
+        if (Artiste.getArtisteSchedul().isEmpty()) Toast.makeText(this, "Cet artiste n'a pas des concernts prochainement", Toast.LENGTH_SHORT).show();
+        else {
         Intent intent = new Intent(this, ArtisteFavoriteSchedulActivity.class);
-        startActivity(intent);
+        startActivity(intent);}
+
 
     }
 }

@@ -25,7 +25,8 @@
         android:layout_height="wrap_content"
         android:text="Ok"
         android:id="@+id/buttonOk"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/editTextNewArtiste"
+        android:layout_toEndOf="@+id/editTextNewArtiste"
+        android:layout_marginStart="71dp" />
 
 </RelativeLayout>

@@ -54,9 +54,8 @@
         android:layout_height="match_parent"
 
         android:adjustViewBounds="true"
-        android:src="@drawable/concert1big"
-        android:baselineAlignBottom="false"
-        android:layout_alignParentTop="true" />
+        android:src="@drawable/concert1"
+        android:baselineAlignBottom="false" />
 
 
 
