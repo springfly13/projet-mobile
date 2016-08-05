@@ -7,7 +7,19 @@ import java.util.ArrayList;
  */
 public class FavoriteNames {
 
+    //table name
+    public static final String TABLE = "Artistes_favoris";
+
+    // Labels Table Columns names
+    public static final String KEY_ID = "id";
+    public static final String KEY_NAME = "name";
+
+    //property to keep data
+    public static int favorite_ID;
+    public static String favoriteName;
+
     private String name;
+
 
     public String getName() {
         return name;
@@ -35,9 +47,9 @@ public class FavoriteNames {
         return name;
     }
 
-    public static ArrayList<FavoriteNames> addNewName(String newName) {
+    /*public static ArrayList<FavoriteNames> addNewName(String newName) {
         ArrayList<FavoriteNames> names = FavoriteNames.getFavoriteAsrtistes();
         names.add(new FavoriteNames(newName));
         return names;
-    }
+    }*/
 }
