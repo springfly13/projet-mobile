@@ -1,9 +1,11 @@
 package com.ioweb.concertplace;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,32 +14,90 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
-public class ArtistesFavoriteActivity extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener {
-
-    //private
+/*public class ArtistesFavoriteActivity extends ListActivity {
+    private FavorisBDDGestion datasource;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artistes_favorite);
         final ListView listView = (ListView)findViewById(R.id.listView3);
         listView.setEmptyView(findViewById(R.id.empty));
 
-       // utilisation de la base de donner
+        /*datasource = new FavorisBDDGestion(this);
+        datasource.open();
+
+        List<Favoris> values = datasource.getAllFavoris();
+        ArrayAdapter<Favoris> adapter = new ArrayAdapter<Favoris>(this, android.R.layout.simple_list_item_1, values);
+        setListAdapter(adapter);*/
 
 
-       /*FavoriManager fm = new FavoriManager(this);
-        fm.open();
-        String [] from = new String[] {DBHelper.}
-        Cursor cursor = fm.fetch();*/
+        /*Button buttonArtistesFavoriAjout = (Button)findViewById(R.id.buttonAjoutArtiste);
+        buttonArtistesFavoriAjout.setOnClickListener((View.OnClickListener) this);
 
-        ///utilisation de la liste locale
-       // final ArrayList<FavoriteNames> listFavorite = FavoriteNames.getFavoriteAsrtistes();
-        FavoriManager fm = new FavoriManager(this);
-        final ArrayList<FavoriteNames> listFavorite = fm.getFavoriteNamesList();
+        Button buttonArtistesFavoriSupp = (Button)findViewById(R.id.buttonSuppArtiste);
+        buttonArtistesFavoriSupp.setOnClickListener((View.OnClickListener) this);
 
-        final ArrayAdapter adapter1 = new ArrayAdapter<FavoriteNames>(
+    }
+
+    public void onClick(View view){
+       @SuppressWarnings("unchecked")
+        ArrayAdapter<Favoris> adapter = (ArrayAdapter<Favoris>)getListAdapter();
+        Favoris favoris = null;
+        switch(view.getId()){
+            case R.id.buttonAjoutArtiste :
+                String[] favorisNames = new String[] {"Amir","Adele"};
+                int nextInt = new Random().nextInt(3);
+                favoris = datasource.createFavoriName(favorisNames[nextInt]);
+                adapter.add(favoris);
+                break;
+            case R.id.buttonSuppArtiste:
+                if(getListAdapter().getCount()>0){
+                    favoris = (Favoris)getListAdapter().getItem(0);
+                    datasource.deleteFavori(favoris);
+                    adapter.remove(favoris);
+                }
+                break;
+        }
+        adapter.notifyDataSetChanged();
+    }
+    @Override
+    protected void onResume(){
+        datasource.open();
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause(){
+        datasource.close();
+        super.onPause();
+    }
+
+}*/
+
+
+
+
+ public class ArtistesFavoriteActivity extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener {
+     private FavorisBDDGestion favorisBDD;
+
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_artistes_favorite);
+         final ListView listView = (ListView) findViewById(R.id.listView3);
+         listView.setEmptyView(findViewById(R.id.empty));
+
+
+
+        /*// final ArrayList<FavoriteNames> listFavorite = FavoriteNames.getFavoriteAsrtistes();
+        /*FavoriManager fm = new FavoriManager(this);
+        final ArrayList<FavoriteNames> listFavorite = fm.getFavoriteNamesList();*/
+
+        /*final ArrayAdapter adapter1 = new ArrayAdapter<FavoriteNames>(
                 this, android.R.layout.simple_expandable_list_item_1, listFavorite);
         listView.setAdapter(adapter1);
 
@@ -54,13 +114,29 @@ public class ArtistesFavoriteActivity extends Activity implements View.OnClickLi
                 //Toast.makeText(this, "Vous avez supprimé un nom", Toast.LENGTH_SHORT).show();
                 return true;
             }
-        });
+        });*/
 
-        Button buttonArtistesFavoriAjout = (Button)findViewById(R.id.buttonAjoutArtiste);
-        buttonArtistesFavoriAjout.setOnClickListener((View.OnClickListener) this);
+         Button buttonArtistesFavoriAjout = (Button) findViewById(R.id.buttonAjoutArtiste);
+         buttonArtistesFavoriAjout.setOnClickListener((View.OnClickListener) this);
 
-    }
+         Button buttonArtistesFavoriSupp = (Button) findViewById(R.id.buttonSuppArtiste);
+         buttonArtistesFavoriSupp.setOnClickListener((View.OnClickListener) this);
 
+     }
+
+     public void onFavorisBDDAccess(View view){
+     Cursor cursor = favorisBDD.getFavorisList();
+     if(cursor!=null&&cursor.moveToFirst())
+     {
+         do {
+             Log.d(" FavorisBDD / Name= ",
+                     cursor.getString(cursor.getColumnIndex(MaBaseSQL.COL_NAME)));
+         } while (cursor.moveToNext());
+         cursor.close();
+
+     }
+
+ }
 
 
     public void onClick(View view) {
@@ -88,4 +164,4 @@ public class ArtistesFavoriteActivity extends Activity implements View.OnClickLi
 
 
     }
-}
+ }
