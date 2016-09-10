@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">MA PLACE DE CONCERT</string>
     <string name="ou_s_lectionner_ci_dessous">Ou sélectionner ci-dessous</string>
+    <string name="enter_name">Country Name</string>
+    <string name="add_record">Add record</string>
+    <string name="btn_update">Update</string>
+    <string name="btn_delete">Delete</string>
+    <string name="empty_list_text">No records found</string>
+    <string name="enter_desc">Currency</string>
+    <string name="enter_title">Favoris</string>
 </resources>
