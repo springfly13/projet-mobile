@@ -11,7 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class ModifyCountryActivity extends Activity implements OnClickListener {
+public class ModifyFavoriNameActivity extends Activity implements OnClickListener {
 
     private EditText titleText;
     private Button updateBtn, deleteBtn;
@@ -25,7 +25,7 @@ public class ModifyCountryActivity extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setTitle("Modify Record");
+        setTitle("Modifier le nom");
 
         setContentView(R.layout.activity_modify_record);
 

@@ -23,7 +23,7 @@ public class AddFavoriActivity extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setTitle("Add Record");
+        setTitle("Ajouter un Favori");
 
         setContentView(R.layout.activity_add_record);
 

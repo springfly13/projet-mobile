@@ -55,7 +55,7 @@ public class ArtistesFavoriteActivity extends ActionBarActivity {
                 String title = titleTextView.getText().toString();
                // String desc = descTextView.getText().toString();
 
-                Intent modify_intent = new Intent(getApplicationContext(), ModifyCountryActivity.class);
+                Intent modify_intent = new Intent(getApplicationContext(), ModifyFavoriNameActivity.class);
                 modify_intent.putExtra("title", title);
                 //modify_intent.putExtra("desc", desc);
                 modify_intent.putExtra("id", id);
