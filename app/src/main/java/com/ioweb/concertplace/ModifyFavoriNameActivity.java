@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ModifyFavoriNameActivity extends Activity implements OnClickListener {
 
@@ -60,12 +61,16 @@ public class ModifyFavoriNameActivity extends Activity implements OnClickListene
                 //String desc = descText.getText().toString();
 
                 dbManager.update(_id, title);
+                //Toast.makeText(this, "Vous avez modifié un nom", Toast.LENGTH_SHORT).show();
                 this.returnHome();
+                Toast.makeText(this, "Vous avez modifié un nom", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.btn_delete:
                 dbManager.delete(_id);
                 this.returnHome();
+                Toast.makeText(this, "Vous avez supprimé un nom", Toast.LENGTH_SHORT).show();
+
                 break;
         }
     }

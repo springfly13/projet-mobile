@@ -19,12 +19,11 @@ public class ArtisteFavoriteSchedulActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_artiste_favorite_schedul);
         ArrayList<Artiste> favoriteSchedul = Artiste.getArtisteSchedul();
         ListView listView = (ListView)findViewById(R.id.listView4);
-        //if (favoriteSchedul.isEmpty()) Toast.makeText(this, "Cet artiste n'a pas des concernts prochainement", Toast.LENGTH_SHORT).show();
-        //else {
+
          ArrayAdapter adapter1 = new ArrayAdapter<Artiste>(
                 this, android.R.layout.simple_expandable_list_item_1, favoriteSchedul);
         listView.setAdapter(adapter1);
-    //}
+
 
         Button buttonAccueil = (Button)findViewById(R.id.buttonAccueil);
         buttonAccueil.setOnClickListener((View.OnClickListener) this);
