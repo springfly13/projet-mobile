@@ -51,22 +51,21 @@ public class ArtistesFavoriteActivity extends ActionBarActivity  {
             public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
                 TextView titleTextView = (TextView) view.findViewById(R.id.title);
                 String title = titleTextView.getText().toString();
-                //Toast.makeText(getApplicationContext(), "selected item "+title , Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "selected item "+title , Toast.LENGTH_SHORT).show();
 
                 for (int i=0; i<Artiste.getListOfArtistes().size(); i++){
                     //String searcheName = Artiste.getListOfArtistes().get(i).getName();
                     if (title.equals(Artiste.getListOfArtistes().get(i).getName())) {
                         Artiste.getArtisteSchedul().add(Artiste.getListOfArtistes().get(i));
-                       // Toast.makeText(getApplicationContext(), "was added "+Artiste.getArtisteSchedul().get(i).getCity() , Toast.LENGTH_SHORT).show();
                     }
                 }
-                //Toast.makeText(getApplicationContext(), "selected item "+Artiste.getArtisteSchedul() , Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getApplicationContext(), "was added "+Artiste.getArtisteSchedul().get(0).getName() , Toast.LENGTH_SHORT).show();
+
                 if (Artiste.getArtisteSchedul().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "L' artiste " + title + " n'a pas des concernts prochainement ", Toast.LENGTH_SHORT).show();
                 } else {
-
-                    Intent intent2 = new Intent(getApplicationContext(), ArtisteFavoriteSchedulActivity.class);
-                    startActivity(intent2);
+                    Intent intent = new Intent(getApplicationContext(), ArtisteFavoriteSchedulActivity.class);
+                    startActivity(intent);
                 }
 
 

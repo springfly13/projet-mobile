@@ -25,6 +25,7 @@
             android:name=".AddFavoriActivity"
             android:label="MA PLACE DE CONCERT" />
         <activity android:name=".NewActivity" />
+        <activity android:name=".ArtisteFavoriteSchedulActivity" />
         <activity android:name=".ArtistesSortActivity" />
 
     </application>

@@ -17,7 +17,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Revenir à la page d&apos;accueil"
+        android:text="Revenir à la page d'accueil"
         android:id="@+id/buttonAccueil"
         android:onClick="onClick"
         android:layout_alignParentBottom="true"
