@@ -18,7 +18,10 @@ public class Artiste {
     private String city;
     private String date;
 
-    public Artiste (String city, String place, String name, String genre, String date){
+    private static String tableOfArtistResearche[] = {"Adele", "Amir", "The Fray", "Paradis", "Sia",
+            "Mika", "Maroon 5", "Mariah Carey", "Keen V", "Justin", "Justin Bieber", "Tove Lo", "Zaz", "Scorpions"  };
+
+    public Artiste (String city, String place, String name,  String date){
         this.city = city;
         this.place = place;
         this.name = name;
@@ -31,16 +34,35 @@ public class Artiste {
         return name +" à " + city + ". " + place +". " + date;
     }
 
-    public static ArrayList<Artiste> getListOfArtistes (){
+    public static ArrayList<Artiste> getListOfArtistes  (){
         ArrayList<Artiste> dataBase = new ArrayList<Artiste>();
-        dataBase.add(new Artiste("Lyon","Transbordeaur","The Pixies","rock","01/10/2016"));
+        ConcertResearcheService result = new ConcertResearcheService();
+       for (int i=0; i<tableOfArtistResearche.length; i++) {
+           try {
+               List<ConcertEventOfRequest> listOfEvents = result.researchOfConcerts(tableOfArtistResearche[i]);
+               int listLength = listOfEvents.size();
+               for (int j=0; j<listLength ; j++ ) {
+                   dataBase.add(new Artiste(listOfEvents.get(j).getVenue().getCity(),listOfEvents.get(j).getVenue().getPlace(), tableOfArtistResearche[i], listOfEvents.get(j).getDatetime() ));
+                  /* dataBase.add(new Artiste(tableOfArtistResearche[i],
+                           listOfEvents.get(j).getVenue().getPlace(),
+                           listOfEvents.get(j).getVenue().getCity(),
+                           listOfEvents.get(j).getVenue().getCountry(),
+                           listOfEvents.get(j).getDatetime() ));*/
+               }
+           } catch (Exception e){
+               e.printStackTrace();
+           }
+
+
+        }
+        /*dataBase.add(new Artiste("Lyon","Transbordeaur","The Pixies","rock","01/10/2016"));
         dataBase.add(new Artiste("Lyon","Transbordeaur","AC/DC","rock","02/10/2016"));
         dataBase.add(new Artiste("Lyon","Hall Tony Garnier","Jamiroquai","rock","03/10/2016"));
         dataBase.add(new Artiste("Lyon","Hall Tony Garnier","Lanny Kravitz","rock","04/10/2016"));
         dataBase.add(new Artiste("Toulouse","Bikini","Fat Freddy","rock","07/10/2016"));
         dataBase.add(new Artiste("Toulouse","Bikini","The Wolves","rock","11/10/2016"));
         dataBase.add(new Artiste("Toulouse","ZENITH","AC/DC","rock","07/11/2016"));
-        dataBase.add(new Artiste("Toulouse","ZENITH","Guns N Roses","rock","08/11/2016"));
+        dataBase.add(new Artiste("Toulouse","ZENITH","Guns N Roses","rock","08/11/2016"));*/
 
         return dataBase;
     }
