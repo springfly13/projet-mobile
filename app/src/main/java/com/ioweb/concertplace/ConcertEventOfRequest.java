@@ -8,7 +8,7 @@ import java.util.List;
 public class ConcertEventOfRequest {
     private String title ;
     private Venue venue;
-    private Artists artists;
+    private List<Artist> artists;
 
     public String getDatetime() {
         return datetime;
@@ -28,11 +28,11 @@ public class ConcertEventOfRequest {
         this.venue = venue;
     }
 
-    public Artists getArtists() {
+    public List<Artist> getArtists() {
         return artists;
     }
 
-    public void setArtists(Artists artists) {
+    public void setArtists(List<Artist> artists) {
         this.artists = artists;
     }
 

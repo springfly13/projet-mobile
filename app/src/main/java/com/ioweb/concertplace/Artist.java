@@ -3,7 +3,7 @@ package com.ioweb.concertplace;
 /**
  * Created by Fly on 26/09/2016.
  */
-public class Artists {
+public class Artist {
     private String name;
     private String image_url;
 

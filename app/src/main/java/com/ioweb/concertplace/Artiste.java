@@ -18,6 +18,10 @@ public class Artiste {
     private String city;
     private String date;
 
+    public static String[] getTableOfArtistResearche() {
+        return tableOfArtistResearche;
+    }
+
     private static String tableOfArtistResearche[] = {"Adele", "Amir", "The Fray", "Paradis", "Sia",
             "Mika", "Maroon 5", "Mariah Carey", "Keen V", "Justin", "Justin Bieber", "Tove Lo", "Zaz", "Scorpions"  };
 
@@ -35,26 +39,19 @@ public class Artiste {
     }
 
     public static ArrayList<Artiste> getListOfArtistes  (){
-        ArrayList<Artiste> dataBase = new ArrayList<Artiste>();
-        ConcertResearcheService result = new ConcertResearcheService();
-       for (int i=0; i<tableOfArtistResearche.length; i++) {
-           try {
-               List<ConcertEventOfRequest> listOfEvents = result.researchOfConcerts(tableOfArtistResearche[i]);
-               int listLength = listOfEvents.size();
-               for (int j=0; j<listLength ; j++ ) {
-                   dataBase.add(new Artiste(listOfEvents.get(j).getVenue().getCity(),listOfEvents.get(j).getVenue().getPlace(), tableOfArtistResearche[i], listOfEvents.get(j).getDatetime() ));
-                  /* dataBase.add(new Artiste(tableOfArtistResearche[i],
-                           listOfEvents.get(j).getVenue().getPlace(),
-                           listOfEvents.get(j).getVenue().getCity(),
-                           listOfEvents.get(j).getVenue().getCountry(),
-                           listOfEvents.get(j).getDatetime() ));*/
-               }
-           } catch (Exception e){
-               e.printStackTrace();
-           }
+       // GetListOfArtistsRunnable runnable = new GetList...
+        GetConcertRunnable runnable = new GetConcertRunnable();
+        Thread thread = new Thread(runnable);
+        //Thread thread = new Thread(new Runnable());
 
-
+        thread.start();
+        try {
+            thread.join();
+           // return runnable.getDataBase();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
         /*dataBase.add(new Artiste("Lyon","Transbordeaur","The Pixies","rock","01/10/2016"));
         dataBase.add(new Artiste("Lyon","Transbordeaur","AC/DC","rock","02/10/2016"));
         dataBase.add(new Artiste("Lyon","Hall Tony Garnier","Jamiroquai","rock","03/10/2016"));
@@ -63,8 +60,8 @@ public class Artiste {
         dataBase.add(new Artiste("Toulouse","Bikini","The Wolves","rock","11/10/2016"));
         dataBase.add(new Artiste("Toulouse","ZENITH","AC/DC","rock","07/11/2016"));
         dataBase.add(new Artiste("Toulouse","ZENITH","Guns N Roses","rock","08/11/2016"));*/
-
-        return dataBase;
+        return runnable.getDataBase();
+        //return dataBase;
     }
 
     public static ArrayList<Artiste> sortListByArtistesName () {
