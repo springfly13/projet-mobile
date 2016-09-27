@@ -8,4 +8,45 @@
     <string name="empty_list_text">No records found</string>
     <string name="enter_desc">Currency</string>
     <string name="enter_title">Favoris</string>
+
+
+    <string name="Choisissez_un_artiste">"Trouvons un concert !"</string>
+
+    <string name="Choisissez_un_lieu">"Trouvons un concert !"</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="Choisissez_un_artiste2">"Choisissez un artiste:"</string>
+
+    <string name="Choisissez_un_lieu2">"Choisissez un lieu:"</string>
+
+    <string name="Fest1">"Rock en Scène"</string>
+
+    <string name="Fest2">"Les Nuits de Fourvière</string>
+
+    <string name="Fest3">"Les Eurockéennes de Belfort"</string>
+
+
+    <string-array name="array_artists">
+
+        <item></item>
+        <item>AC/DC</item>
+        <item>Fat_Freddy</item>
+        <item>Guns_N_Roses</item>
+        <item>Jamiroquai</item>
+        <item>Lenny_Kravitz</item>
+        <item>The_Pixies</item>
+        <item>The_Wolves</item>
+
+    </string-array>
+
+    <string-array name="array_lieux">
+
+        <item></item>
+        <item>Lyon</item>
+        <item>Toulouse</item>
+
+    </string-array>
+
+
 </resources>
