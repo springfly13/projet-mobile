@@ -19,12 +19,12 @@ protected void onCreate(Bundle savedInstanceState) {
 
     ListView listView = (ListView)findViewById(R.id.listView3);
 
-    ArrayList<Artiste> listNamesSort = Artiste.sortListByArtistesName();
+    /*ArrayList<Artiste> listNamesSort = Artiste.sortListByArtistesName();
 
     ArrayAdapter adapter1 = new ArrayAdapter<Artiste>(
 
             this, android.R.layout.simple_list_item_1, listNamesSort);
 
-    listView.setAdapter(adapter1);
+    listView.setAdapter(adapter1);*/
 
 }}

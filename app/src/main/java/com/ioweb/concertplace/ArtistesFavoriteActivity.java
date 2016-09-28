@@ -20,9 +20,7 @@ import java.util.ArrayList;
 public class ArtistesFavoriteActivity extends ActionBarActivity {
 
     private DBManager dbManager;
-
     private ListView listView;
-
     private SimpleCursorAdapter adapter;
 
     final String[] from = new String[]{DatabaseHelper._ID,
@@ -52,15 +50,13 @@ public class ArtistesFavoriteActivity extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
+
                 TextView titleTextView = (TextView) view.findViewById(R.id.title);
                 String title = titleTextView.getText().toString();
                 Toast.makeText(getApplicationContext(), "selected item " + title, Toast.LENGTH_SHORT).show();
                 String tabName[] = {title};
                 ArrayList<Artiste> favoriSchedul = new ArrayList<Artiste>();
                 favoriSchedul = Artiste.getSchedul();
-                //favoriSchedul = Artiste.getListOfArtistes(tabName);
-
-                //Toast.makeText(getApplicationContext(), "res of search" + favoriSchedul, Toast.LENGTH_SHORT).show();
 
                 if (favoriSchedul.isEmpty() || favoriSchedul.size() == 0) {
                     favoriSchedul = Artiste.getListOfArtistes(tabName);
@@ -68,8 +64,7 @@ public class ArtistesFavoriteActivity extends ActionBarActivity {
                         Toast.makeText(getApplicationContext(), "L' artiste " + title + " n'a pas des concernts prochainement ", Toast.LENGTH_SHORT).show();
                     } else {
                         Artiste.setArtisteSchedul(favoriSchedul);
-                        Intent intent = new Intent(getApplicationContext(), ArtisteFavoriteSchedulActivity.class);
-                        startActivity(intent);
+                        goToArtistSchedulActivity();
                     }
 
                 } else {
@@ -85,13 +80,11 @@ public class ArtistesFavoriteActivity extends ActionBarActivity {
                             Toast.makeText(getApplicationContext(), "L' artiste " + title + " n'a pas des concernts prochainement ", Toast.LENGTH_SHORT).show();
                         } else {
                             Artiste.setArtisteSchedul(listOfFavoriActivity);
-                            Intent intent = new Intent(getApplicationContext(), ArtisteFavoriteSchedulActivity.class);
-                            startActivity(intent);
+                            goToArtistSchedulActivity();
                         }
                     } else {
                         Artiste.setArtisteSchedul(listOfFavoriActivity);
-                        Intent intent = new Intent(getApplicationContext(), ArtisteFavoriteSchedulActivity.class);
-                        startActivity(intent);
+                        goToArtistSchedulActivity();
                     }
                     ;
 
@@ -117,6 +110,11 @@ public class ArtistesFavoriteActivity extends ActionBarActivity {
                 return true;
             }
         });
+    }
+
+    public void goToArtistSchedulActivity(){
+        Intent intent = new Intent(getApplicationContext(), ArtisteFavoriteSchedulActivity.class);
+        startActivity(intent);
     }
 
     @Override

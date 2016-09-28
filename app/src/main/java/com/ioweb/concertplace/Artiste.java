@@ -30,17 +30,17 @@ public class Artiste {
     }
 
 
-
-   private static ArrayList<Artiste> schedul = new ArrayList<Artiste>();
+    //Depot de la liste generale
+    private static ArrayList<Artiste> schedul = new ArrayList<Artiste>();
 
     public static String[] getTableOfArtistResearche() {
         return tableOfArtistResearche;
     }
 
-    private static String tableOfArtistResearche [] = {"Adele", "Amir", "The Fray", "Paradis", "Sia",
-            "Mika", "Maroon 5", "Mariah Carey", "Keen V", "Justin", "Justin Bieber", "Tove Lo", "Zaz", "Scorpions"  };
+    private static String tableOfArtistResearche[] = {"Zaz", "Adele", "Amir", "The Fray", "Paradis", "Sia",
+            "Mika", "Maroon 5", "Mariah Carey", "Keen V", "Justin", "Justin Bieber", "Tove Lo",  "Scorpions"};
 
-    public Artiste (String name, String place, String city, String country,  String date){
+    public Artiste(String name, String place, String city, String country, String date) {
         this.city = city;
         this.place = place;
         this.nameOfArtiste = name;
@@ -50,14 +50,14 @@ public class Artiste {
 
     @Override
     public String toString() {
-        return nameOfArtiste +" à " + place + ". " + city +". " + country + ". " + date;
+        return nameOfArtiste + " à " + place + ". " + city + ". " + country + ". " + date;
         //return nameOfArtiste;
     }
 
-    public static ArrayList<Artiste> getListOfArtistes (String tabOfArtistsNames []){
+    public static ArrayList<Artiste> getListOfArtistes(String tabOfArtistsNames[]) {
 
         GetConcertRunnable runnable = new GetConcertRunnable();
-        runnable.setTabOfNamesForSearch(tabOfArtistsNames) ;
+        runnable.setTabOfNamesForSearch(tabOfArtistsNames);
         Thread thread = new Thread(runnable);
         thread.start();
         try {
@@ -70,8 +70,8 @@ public class Artiste {
         return runnable.getDataBase();
     }
 
-    public static ArrayList<Artiste> sortListByArtistesName () {
-        ArrayList<Artiste> sortedNames = Artiste.getListOfArtistes(tableOfArtistResearche);
+    public static ArrayList<Artiste> sortListByArtistesName(ArrayList<Artiste> listeARanger) {
+        ArrayList<Artiste> sortedNames = listeARanger;
         Collections.sort(sortedNames, new Comparator<Artiste>() {
             @Override
             public int compare(Artiste lhs, Artiste rhs) {
@@ -80,23 +80,24 @@ public class Artiste {
         });
         return sortedNames;
     }
+
+    //Depot du programme de concernt d'artiste favori
     private static ArrayList<Artiste> favoriteArtisteSchedul = new ArrayList<Artiste>();
 
-    public static ArrayList<Artiste> getArtisteSchedul (){
-         return favoriteArtisteSchedul;
+    public static ArrayList<Artiste> getArtisteSchedul() {
+        return favoriteArtisteSchedul;
     }
 
-    public static ArrayList<Artiste> setArtisteSchedul (ArrayList<Artiste> listOfevents){
+    public static ArrayList<Artiste> setArtisteSchedul(ArrayList<Artiste> listOfevents) {
         //ArrayList<Artiste> schedulOfArtist = new ArrayList<Artiste>();
         //schedulOfArtist = listOfevents;
         favoriteArtisteSchedul.clear();
-        for (int i=0; i<listOfevents.size(); i++){
+        for (int i = 0; i < listOfevents.size(); i++) {
             favoriteArtisteSchedul.add(listOfevents.get(i));
         }
         //favoriteArtisteSchedul = listOfevents;
         return favoriteArtisteSchedul;
     }
-
 
 
     public String getCity() {
@@ -136,7 +137,6 @@ public class Artiste {
     }
 
 
-
     public DateFormat getDayMonthYear() {
         return dayMonthYear;
     }
@@ -144,10 +144,6 @@ public class Artiste {
     public void setDayMonthYear(DateFormat dayMonthYear) {
         this.dayMonthYear = dayMonthYear;
     }
-
-
-
-
 
 
 }

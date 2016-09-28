@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.sqlitesample.MainActivity" >
+
+    <item
+        android:id="@+id/updateCallResponse"
+        android:icon="@android:drawable/ic_menu_search"
+        android:orderInCategory="100"
+        android:title="Update"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/home"
+        android:icon="@android:drawable/ic_media_play"
+        android:orderInCategory="100"
+        android:title="Home"
+        app:showAsAction="always"/>
+
+
+</menu>
