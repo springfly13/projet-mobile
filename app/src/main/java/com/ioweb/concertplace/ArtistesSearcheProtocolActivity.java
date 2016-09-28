@@ -90,16 +90,6 @@ public class ArtistesSearcheProtocolActivity extends AppCompatActivity implement
         mEdit = (EditText) findViewById(R.id.nameOfArtist);
 
 
-        /*mButton.setOnClickListener(
-                new View.OnClickListener()
-                {
-                    public void onClick(View view)
-                    {
-                        Log.v("EditText", mEdit.getText().toString());
-                        nameOfArtist = mEdit.getText().toString();
-                    }
-                });*/
-
 
         // Recherche par nome d'artist et ville avec les spinneurs
         // Spinner Drop down elements
@@ -115,7 +105,6 @@ public class ArtistesSearcheProtocolActivity extends AppCompatActivity implement
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 setSelectedArtist(parent.getItemAtPosition(pos).toString());
-                Toast.makeText(ArtistesSearcheProtocolActivity.this, "Vous avez choisi : " + getSelectedArtist(), Toast.LENGTH_SHORT).show();
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
@@ -144,7 +133,6 @@ public class ArtistesSearcheProtocolActivity extends AppCompatActivity implement
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 setSelectedArtistCity(parent.getItemAtPosition(pos).toString());
-                Toast.makeText(ArtistesSearcheProtocolActivity.this, "Vous avez choisi : " + getSelectedArtistCity(), Toast.LENGTH_SHORT).show();
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
@@ -174,6 +162,7 @@ public class ArtistesSearcheProtocolActivity extends AppCompatActivity implement
                 selectedItem = mEdit.getText().toString();
 
                 if ( !selectedItem.isEmpty()) {
+                    Toast.makeText(ArtistesSearcheProtocolActivity.this, "Vous avez entre : " + selectedItem, Toast.LENGTH_SHORT).show();
                     ArrayList<Artiste> tab = new ArrayList<Artiste>();
                     for (int i = 0; i < listeOfAllEvents.size(); i++) {
                         if (listeOfAllEvents.get(i).getName().equals(selectedItem)) {
@@ -189,12 +178,16 @@ public class ArtistesSearcheProtocolActivity extends AppCompatActivity implement
                     Artiste.setDepotResultOfSearch(tab);
                     Intent intent = new Intent(ArtistesSearcheProtocolActivity.this, ResearcheByArtistByCityActivity.class);
                     startActivity(intent);
+                } else {
+                    Toast.makeText(ArtistesSearcheProtocolActivity.this, "S'il vous plait, entrez le nom d'artiste", Toast.LENGTH_SHORT).show();
                 }
             }
             break;
             case R.id.choose_artist: {
                 selectedItem = getSelectedArtist();
+
                 if (!selectedItem.equals("") ) {
+                    Toast.makeText(ArtistesSearcheProtocolActivity.this, "Vous avez choisi : " + getSelectedArtist(), Toast.LENGTH_SHORT).show();
                     ArrayList<Artiste> tab = new ArrayList<Artiste>();
                     for (int i = 0; i < listeOfAllEvents.size(); i++) {
                         if (listeOfAllEvents.get(i).getName().equals(selectedItem)) {
@@ -205,12 +198,17 @@ public class ArtistesSearcheProtocolActivity extends AppCompatActivity implement
                     Artiste.setDepotResultOfSearch(tab);
                     Intent intent = new Intent(ArtistesSearcheProtocolActivity.this, ResearcheByArtistByCityActivity.class);
                     startActivity(intent);
+                } else {
+                    Toast.makeText(ArtistesSearcheProtocolActivity.this, "S'il vous plait, faites votre choix" + selectedItem, Toast.LENGTH_SHORT).show();
                 }
             }
             break;
             case R.id.choose_lieu: {
+                selectedItem = "";
                 selectedItem = getSelectedArtistCity();
+
                 if (!selectedItem.equals("") ) {
+                    Toast.makeText(ArtistesSearcheProtocolActivity.this, "Vous avez choisi : " + selectedItem, Toast.LENGTH_SHORT).show();
                     ArrayList<Artiste> tab = new ArrayList<Artiste>();
                     for (int i = 0; i < listeOfAllEvents.size(); i++) {
                         if (listeOfAllEvents.get(i).getCity().equals(selectedItem)) {
@@ -221,28 +219,14 @@ public class ArtistesSearcheProtocolActivity extends AppCompatActivity implement
                     Artiste.setDepotResultOfSearch(tab);
                     Intent intent = new Intent(ArtistesSearcheProtocolActivity.this, ResearcheByArtistByCityActivity.class);
                     startActivity(intent);
+                } else {
+                    Toast.makeText(ArtistesSearcheProtocolActivity.this, "S'il vous plait, faites votre choix" + getSelectedArtist(), Toast.LENGTH_SHORT).show();
                 }
             }
             break;
         }
 
-
     }
 
-
-
-       /*
-
-       String concertArtist = String.valueOf(spinner.getSelectedItem());
-
-       String concertLieu = String.valueOf(spinner2.getSelectedItem());*/        /*
-
-       Button buttonChoose_artist = (Button) findViewById(R.id.choose_artist);
-
-       buttonChoose_artist.setOnClickListener(this); */        /*
-
-       Button buttonChoose_lieu = (Button) findViewById(R.id.choose_lieu);
-
-       buttonChoose_lieu.setOnClickListener(this); */
 
 }
