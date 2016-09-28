@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intentArtistesSearch);}
                 break;*/
             case R.id.buttonArtistes:
-            {Intent intentArtistes = new Intent(this, ArtistesSortActivity.class);
+            {Intent intentArtistes = new Intent(this, ArtistesSearcheProtocolActivity.class);
                 startActivity(intentArtistes);}
                 break;
             case R.id.button4:
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void onClickArtistes(View v) {
-        Intent intentArtistes = new Intent(this, ArtistesSortActivity.class);
+        Intent intentArtistes = new Intent(this, ArtistesSearcheProtocolActivity.class);
         startActivity(intentArtistes);
     }
 }

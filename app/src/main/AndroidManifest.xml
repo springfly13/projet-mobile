@@ -31,9 +31,9 @@
             android:name=".AddFavoriActivity"
             android:label="MA PLACE DE CONCERT" />
         <activity android:name=".NosSuggestionsActivity" />
-        <activity android:name=".ConcertsResearcheActivity" />
+        <activity android:name=".ResearcheByArtistByCityActivity" />
         <activity android:name=".ArtisteFavoriteSchedulActivity" />
-        <activity android:name=".ArtistesSortActivity" />
+        <activity android:name=".ArtistesSearcheProtocolActivity" />
 
     </application>
 

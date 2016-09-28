@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 
 import android.view.Window;
@@ -15,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import android.widget.Toast;
@@ -24,7 +26,10 @@ import java.util.List;
 
 import java.util.ArrayList;
 
-public class ArtistesSortActivity extends AppCompatActivity implements View.OnClickListener {    // premier spinner
+public class ArtistesSearcheProtocolActivity extends AppCompatActivity implements View.OnClickListener {
+
+    Button mButton;
+    EditText mEdit;
 
     public String getSelectedArtist() {
         return selectedArtist;
@@ -56,6 +61,16 @@ public class ArtistesSortActivity extends AppCompatActivity implements View.OnCl
 
     private ArrayList<Artiste> listeOfAllEvents = new ArrayList<Artiste>();
 
+    public String getNameOfArtist() {
+        return nameOfArtist;
+    }
+
+    public void setNameOfArtist(String nameOfArtist) {
+        this.nameOfArtist = nameOfArtist;
+    }
+
+    private String nameOfArtist;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -69,8 +84,24 @@ public class ArtistesSortActivity extends AppCompatActivity implements View.OnCl
             listeOfAllEvents = Artiste.getListOfArtistes(Artiste.getTableOfArtistResearche());
             Artiste.setSchedul(listeOfAllEvents);
         }
-        // }
+        //recherche avec l'input du nome d'artiste
 
+        mButton = (Button) findViewById(R.id.textInputOk);
+        mEdit = (EditText) findViewById(R.id.nameOfArtist);
+
+
+        /*mButton.setOnClickListener(
+                new View.OnClickListener()
+                {
+                    public void onClick(View view)
+                    {
+                        Log.v("EditText", mEdit.getText().toString());
+                        nameOfArtist = mEdit.getText().toString();
+                    }
+                });*/
+
+
+        // Recherche par nome d'artist et ville avec les spinneurs
         // Spinner Drop down elements
         String tabOfSpinerItems[] = Artiste.getTableOfArtistResearche();
         List<String> artists = new ArrayList<String>(Arrays.asList(tabOfSpinerItems));
@@ -84,7 +115,7 @@ public class ArtistesSortActivity extends AppCompatActivity implements View.OnCl
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 setSelectedArtist(parent.getItemAtPosition(pos).toString());
-                Toast.makeText(ArtistesSortActivity.this, "Vous avez choisi : " + getSelectedArtist(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ArtistesSearcheProtocolActivity.this, "Vous avez choisi : " + getSelectedArtist(), Toast.LENGTH_SHORT).show();
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
@@ -113,7 +144,7 @@ public class ArtistesSortActivity extends AppCompatActivity implements View.OnCl
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 setSelectedArtistCity(parent.getItemAtPosition(pos).toString());
-                Toast.makeText(ArtistesSortActivity.this, "Vous avez choisi : " + getSelectedArtistCity(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ArtistesSearcheProtocolActivity.this, "Vous avez choisi : " + getSelectedArtistCity(), Toast.LENGTH_SHORT).show();
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
@@ -125,6 +156,9 @@ public class ArtistesSortActivity extends AppCompatActivity implements View.OnCl
         Button buttonChooseArtist = (Button) findViewById(R.id.choose_artist);
         buttonChooseArtist.setOnClickListener(this);
 
+        Button buttonInputTextOk = (Button) findViewById(R.id.textInputOk);
+        buttonInputTextOk.setOnClickListener(this);
+
         Button buttonChooseArtistCity = (Button) findViewById(R.id.choose_lieu);
         buttonChooseArtistCity.setOnClickListener(this);
 
@@ -135,9 +169,32 @@ public class ArtistesSortActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         String selectedItem = "";
         switch (view.getId()) {
+            case R.id.textInputOk: {
+                Log.v("EditText", mEdit.getText().toString());
+                selectedItem = mEdit.getText().toString();
+
+                if ( !selectedItem.isEmpty()) {
+                    ArrayList<Artiste> tab = new ArrayList<Artiste>();
+                    for (int i = 0; i < listeOfAllEvents.size(); i++) {
+                        if (listeOfAllEvents.get(i).getName().equals(selectedItem)) {
+                            tab.add(listeOfAllEvents.get(i));
+                        }
+                    }
+                    if (tab.size() == 0 || tab.isEmpty()) {
+                        String[] tab2 = {selectedItem};
+                        tab = Artiste.getListOfArtistes(tab2);
+
+                    }
+                    Artiste.getDepotResultOfSearch().clear();
+                    Artiste.setDepotResultOfSearch(tab);
+                    Intent intent = new Intent(ArtistesSearcheProtocolActivity.this, ResearcheByArtistByCityActivity.class);
+                    startActivity(intent);
+                }
+            }
+            break;
             case R.id.choose_artist: {
                 selectedItem = getSelectedArtist();
-                if (!selectedItem.equals("")) {
+                if (!selectedItem.equals("") ) {
                     ArrayList<Artiste> tab = new ArrayList<Artiste>();
                     for (int i = 0; i < listeOfAllEvents.size(); i++) {
                         if (listeOfAllEvents.get(i).getName().equals(selectedItem)) {
@@ -146,14 +203,14 @@ public class ArtistesSortActivity extends AppCompatActivity implements View.OnCl
                     }
                     Artiste.getDepotResultOfSearch().clear();
                     Artiste.setDepotResultOfSearch(tab);
-                    Intent intent = new Intent(ArtistesSortActivity.this, ConcertsResearcheActivity.class);
+                    Intent intent = new Intent(ArtistesSearcheProtocolActivity.this, ResearcheByArtistByCityActivity.class);
                     startActivity(intent);
                 }
             }
             break;
             case R.id.choose_lieu: {
                 selectedItem = getSelectedArtistCity();
-                if (!selectedItem.equals("")) {
+                if (!selectedItem.equals("") ) {
                     ArrayList<Artiste> tab = new ArrayList<Artiste>();
                     for (int i = 0; i < listeOfAllEvents.size(); i++) {
                         if (listeOfAllEvents.get(i).getCity().equals(selectedItem)) {
@@ -162,7 +219,7 @@ public class ArtistesSortActivity extends AppCompatActivity implements View.OnCl
                     }
                     Artiste.getDepotResultOfSearch().clear();
                     Artiste.setDepotResultOfSearch(tab);
-                    Intent intent = new Intent(ArtistesSortActivity.this, ConcertsResearcheActivity.class);
+                    Intent intent = new Intent(ArtistesSearcheProtocolActivity.this, ResearcheByArtistByCityActivity.class);
                     startActivity(intent);
                 }
             }

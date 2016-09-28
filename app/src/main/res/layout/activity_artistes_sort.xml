@@ -12,7 +12,26 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context="com.ioweb.concertplace.ArtistesSortActivity">
+    tools:context=".ArtistesSearcheProtocolActivity">
+
+    <EditText
+        android:id="@+id/nameOfArtist"
+        android:layout_width="130pt"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7pt"
+        android:hint="Entrez le nome d'artiste"
+        android:inputType="textEmailAddress" />
+
+    <Button
+
+        android:id="@+id/textInputOk"
+        android:layout_width="20pt"
+        android:layout_height="50dp"
+        android:layout_marginLeft="140pt"
+        android:layout_marginTop="10dp"
+        android:background="#e01735"
+        android:onClick="onClick"
+        android:text="Ok" />
 
     <TextView
         android:id="@+id/textView1"
