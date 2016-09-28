@@ -133,6 +133,13 @@ public class ArtistesFavoriteActivity extends ActionBarActivity {
             startActivity(add_mem);
 
         }
+
+        if (id == R.id.home) {
+
+            Intent home = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(home);
+
+        }
         return super.onOptionsItemSelected(item);
     }
 

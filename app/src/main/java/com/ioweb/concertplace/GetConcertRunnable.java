@@ -29,8 +29,9 @@ public class GetConcertRunnable implements Runnable {
             try {
                 List<ConcertEventOfRequest> listOfEvents = result.researchOfConcerts(tableOfNames[i]);
                 for (ConcertEventOfRequest event : listOfEvents) {
-                    dataBase.add(new Artiste(tableOfNames[i], event.getVenue().getCity(),
+                    dataBase.add(new Artiste(tableOfNames[i],
                             event.getVenue().getPlace(),
+                            event.getVenue().getCity(),
                             event.getVenue().getCountry(),
                             event.getDatetime() ));
                 }

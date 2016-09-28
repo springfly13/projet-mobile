@@ -1,7 +1,6 @@
 package com.ioweb.concertplace;
 
 import android.content.Intent;
-import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button5:
-            {Intent intent = new Intent(this, NewActivity.class);
+            {Intent intent = new Intent(this, NosSuggestionsActivity.class);
                 startActivity(intent);}
                 break;
             /*case R.id.button4:

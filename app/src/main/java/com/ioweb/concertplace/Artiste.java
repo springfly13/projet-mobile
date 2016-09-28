@@ -29,6 +29,9 @@ public class Artiste {
         return schedul;
     }
 
+    public static void setSchedul(ArrayList<Artiste> schedul) {
+        Artiste.schedul = schedul;
+    }
 
     //Depot de la liste generale
     private static ArrayList<Artiste> schedul = new ArrayList<Artiste>();
@@ -37,8 +40,19 @@ public class Artiste {
         return tableOfArtistResearche;
     }
 
+    public static ArrayList<Artiste> getDepotResultOfSearch() {
+        return depotResultOfSearch;
+    }
+
+    public static void setDepotResultOfSearch(ArrayList<Artiste> depotResultOfSearch) {
+        Artiste.depotResultOfSearch = depotResultOfSearch;
+    }
+
+    //Depot pour stocker le resultat de recherche par lieu et par Artiste
+    private static ArrayList<Artiste> depotResultOfSearch = new ArrayList<Artiste>();
+
     private static String tableOfArtistResearche[] = {"Zaz", "Adele", "Amir", "The Fray", "Paradis", "Sia",
-            "Mika", "Maroon 5", "Mariah Carey", "Keen V", "Justin", "Justin Bieber", "Tove Lo",  "Scorpions"};
+            "Mika", "Maroon 5", "Mariah Carey", "Keen V", "Justin", "Justin Bieber", "Tove Lo", "Scorpions"};
 
     public Artiste(String name, String place, String city, String country, String date) {
         this.city = city;
@@ -65,7 +79,7 @@ public class Artiste {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        schedul = runnable.dataBase;
+        //schedul = runnable.dataBase;
 
         return runnable.getDataBase();
     }

@@ -2,38 +2,59 @@ package com.ioweb.concertplace;
 
 import android.content.Intent;
 
-        import android.graphics.Color;
+import android.support.v7.app.AppCompatActivity;
 
-        import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
-        import android.os.Bundle;
+import android.view.View;
 
-        import android.view.View;
+import android.view.Window;
 
-        import android.view.Window;
+import android.widget.AdapterView;
 
-        import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 
-        import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Button;
+import android.widget.Spinner;
 
-        import android.widget.ArrayAdapter;
-
-        import android.widget.Button;
-
-        import android.widget.Spinner;
-
-        import android.widget.TextView;
-
-        import android.widget.Toast;
-
-        import android.app.Activity;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.List;
 
-        import java.util.ArrayList;
+import java.util.ArrayList;
 
-public class ArtistesSortActivity extends AppCompatActivity {    // premier spinner
+public class ArtistesSortActivity extends AppCompatActivity implements View.OnClickListener {    // premier spinner
+
+    public String getSelectedArtist() {
+        return selectedArtist;
+    }
+
+    public void setSelectedArtist(String selectedArtist) {
+        this.selectedArtist = selectedArtist;
+    }
+
+    private String selectedArtist = "";
+
+    public String getSelectedArtistCity() {
+        return selectedArtistCity;
+    }
+
+    public void setSelectedArtistCity(String selectedArtistCity) {
+        this.selectedArtistCity = selectedArtistCity;
+    }
+
+    private String selectedArtistCity = "";
+
+    public ArrayList<Artiste> getListeOfAllEvents() {
+        return listeOfAllEvents;
+    }
+
+    public void setListeOfAllEvents(ArrayList<Artiste> listeOfAllEvents) {
+        this.listeOfAllEvents = listeOfAllEvents;
+    }
+
+    private ArrayList<Artiste> listeOfAllEvents = new ArrayList<Artiste>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,32 +63,28 @@ public class ArtistesSortActivity extends AppCompatActivity {    // premier spin
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_artistes_sort);
 
+        //Recuperation de la liste pour la recherche
+        listeOfAllEvents = Artiste.getSchedul();
+        if (listeOfAllEvents.isEmpty() || listeOfAllEvents.size() == 0) {
+            listeOfAllEvents = Artiste.getListOfArtistes(Artiste.getTableOfArtistResearche());
+            Artiste.setSchedul(listeOfAllEvents);
+        }
+        // }
+
         // Spinner Drop down elements
-        String tabOfSpinerItems [] = Artiste.getTableOfArtistResearche();
+        String tabOfSpinerItems[] = Artiste.getTableOfArtistResearche();
         List<String> artists = new ArrayList<String>(Arrays.asList(tabOfSpinerItems));
         artists.add(0, "");
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, artists);
-
-        // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // attaching data adapter to spinner
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setAdapter(dataAdapter);
 
-
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            /**
-             * Called when a new item is selected (in the Spinner)
-             */
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int pos, long id) {
-                // An spinnerItem was selected. You can retrieve the selected item using
-                // parent.getItemAtPosition(pos)
-                String selected = parent.getItemAtPosition(pos).toString();
-
-                Toast.makeText(ArtistesSortActivity.this, "L'item selected" + selected,Toast.LENGTH_SHORT).show();
-
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                setSelectedArtist(parent.getItemAtPosition(pos).toString());
+                Toast.makeText(ArtistesSortActivity.this, "Vous avez choisi : " + getSelectedArtist(), Toast.LENGTH_SHORT).show();
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
@@ -77,38 +94,85 @@ public class ArtistesSortActivity extends AppCompatActivity {    // premier spin
         });
 
         // deuxième spinner
-        List<String> categories2 = new ArrayList<String>();
-        categories2.add("");
-        categories2.add("Lyon");
-        categories2.add("Toulouse");        // Creating adapter for first spinner
 
-        Spinner spinner2 = (Spinner) findViewById(R.id.spinner2);
-        spinner2.setBackgroundResource(R.color.black);
-        // Creating adapter for second spinner
-        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories2);
+        List<String> artistsCity = new ArrayList<String>();
+        artistsCity.add(listeOfAllEvents.get(0).getCity());
+        for (int i = 1; i < listeOfAllEvents.size(); i++) {
+            if (!listeOfAllEvents.get(i).getCity().equals(listeOfAllEvents.get(i - 1).getCity())) {
+                artistsCity.add(listeOfAllEvents.get(i).getCity());
+            }
+        }
 
-        // Drop down layout style - list view with radio button
+        artistsCity.add(0, "");
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, artistsCity);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // attaching data adapter to spinner
-        // spinner2.setAdapter(dataAdapter2);
-
+        Spinner spinner2 = (Spinner) findViewById(R.id.spinner2);
         spinner2.setAdapter(dataAdapter2);
-        spinner2.setPrompt("Select Driver");
+
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                setSelectedArtistCity(parent.getItemAtPosition(pos).toString());
+                Toast.makeText(ArtistesSortActivity.this, "Vous avez choisi : " + getSelectedArtistCity(), Toast.LENGTH_SHORT).show();
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing, just another required interface callback
+            }
+
+        });
+
+        Button buttonChooseArtist = (Button) findViewById(R.id.choose_artist);
+        buttonChooseArtist.setOnClickListener(this);
+
+        Button buttonChooseArtistCity = (Button) findViewById(R.id.choose_lieu);
+        buttonChooseArtistCity.setOnClickListener(this);
+
+
     }
 
-    public void onClickB1(View view) {
-        Intent intent = new Intent(ArtistesSortActivity.this, ConcertsPerArtistActivity.class);
-        startActivity(intent);
+    @Override
+    public void onClick(View view) {
+        String selectedItem = "";
+        switch (view.getId()) {
+            case R.id.choose_artist: {
+                selectedItem = getSelectedArtist();
+                if (!selectedItem.equals("")) {
+                    ArrayList<Artiste> tab = new ArrayList<Artiste>();
+                    for (int i = 0; i < listeOfAllEvents.size(); i++) {
+                        if (listeOfAllEvents.get(i).getName().equals(selectedItem)) {
+                            tab.add(listeOfAllEvents.get(i));
+                        }
+                    }
+                    Artiste.getDepotResultOfSearch().clear();
+                    Artiste.setDepotResultOfSearch(tab);
+                    Intent intent = new Intent(ArtistesSortActivity.this, ConcertsResearcheActivity.class);
+                    startActivity(intent);
+                }
+            }
+            break;
+            case R.id.choose_lieu: {
+                selectedItem = getSelectedArtistCity();
+                if (!selectedItem.equals("")) {
+                    ArrayList<Artiste> tab = new ArrayList<Artiste>();
+                    for (int i = 0; i < listeOfAllEvents.size(); i++) {
+                        if (listeOfAllEvents.get(i).getCity().equals(selectedItem)) {
+                            tab.add(listeOfAllEvents.get(i));
+                        }
+                    }
+                    Artiste.getDepotResultOfSearch().clear();
+                    Artiste.setDepotResultOfSearch(tab);
+                    Intent intent = new Intent(ArtistesSortActivity.this, ConcertsResearcheActivity.class);
+                    startActivity(intent);
+                }
+            }
+            break;
+        }
+
 
     }
 
-    public void onClickB2(View view) {
 
-        Intent intent = new Intent(ArtistesSortActivity.this, ConcertsPerLieuActivity.class);
-        startActivity(intent);
-
-    }
 
        /*
 

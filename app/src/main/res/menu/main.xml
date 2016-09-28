@@ -10,4 +10,13 @@
         android:title="Ajouter un favori"
         app:showAsAction="always"/>
 
+    <item
+        android:id="@+id/home"
+        android:icon="@android:drawable/ic_media_play"
+        android:orderInCategory="100"
+        android:title="Home"
+        app:showAsAction="always"/>
+
+
+
 </menu>

@@ -10,12 +10,12 @@
     android:background="#80f7d6f9"
     android:backgroundTint="#f4a3c5"
     android:backgroundTintMode="src_in"
-    tools:context=".NewActivity">
+    tools:context=".NosSuggestionsActivity">
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="40pt"
-        android:text="Programme (artistes A-Z)"
+        android:text="Nos suggestions du moment (artistes A-Z)"
         android:id="@+id/button5"
         android:onClick="onClick"
         android:layout_alignParentBottom="true"

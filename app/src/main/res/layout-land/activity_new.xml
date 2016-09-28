@@ -7,7 +7,7 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context="com.ioweb.concertplace.NewActivity">
+    tools:context=".NosSuggestionsActivity">
 
     <ListView
         android:id="@+id/listView1"

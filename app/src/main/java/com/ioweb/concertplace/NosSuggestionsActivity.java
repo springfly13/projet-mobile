@@ -1,7 +1,6 @@
 package com.ioweb.concertplace;
 
 import android.content.Intent;
-import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,9 +10,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class NewActivity extends AppCompatActivity {
+public class NosSuggestionsActivity extends AppCompatActivity {
 
 
 
@@ -28,6 +26,7 @@ public class NewActivity extends AppCompatActivity {
         ArrayList<Artiste> listNames = new ArrayList<Artiste>();
         if (schedulGeneral.size()==0 || schedulGeneral.isEmpty()){
             ArrayList<Artiste> responseOfCall = Artiste.getListOfArtistes(Artiste.getTableOfArtistResearche());
+            Artiste.setSchedul(responseOfCall);
             listNames = Artiste.sortListByArtistesName(responseOfCall);
         } else {
             listNames = Artiste.sortListByArtistesName(schedulGeneral);
@@ -64,13 +63,13 @@ public class NewActivity extends AppCompatActivity {
             Artiste.setArtisteSchedul(listNames);
             Toast.makeText(getApplicationContext(), "New list ", Toast.LENGTH_SHORT).show();
 
-            Intent update = new Intent(getApplicationContext(), NewActivity.class);
+            Intent update = new Intent(getApplicationContext(), NosSuggestionsActivity.class);
             startActivity(update);
 
         }
 
         if (id == R.id.home) {
-            
+
             Intent home = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(home);
 
