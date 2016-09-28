@@ -42,7 +42,6 @@
             style="@style/spinner_style"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:entries="@array/array_artists"
             android:gravity="center_horizontal" />
 
     </RelativeLayout>

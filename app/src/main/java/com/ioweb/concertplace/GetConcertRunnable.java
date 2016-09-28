@@ -14,25 +14,25 @@ public class GetConcertRunnable implements Runnable {
 
     ArrayList<Artiste> dataBase = new ArrayList<Artiste>();
 
+    public void setTabOfNamesForSearch(String[] tabOfNamesForSearch) {
+        this.tabOfNamesForSearch = tabOfNamesForSearch;
+    }
+
+    String tabOfNamesForSearch [];
+
     @Override
     public void run() {
         //ArrayList<Artiste> dataBase = new ArrayList<Artiste>();
-        String []  tableOfNames = Artiste.getTableOfArtistResearche();
+        String []  tableOfNames = tabOfNamesForSearch;
         ConcertResearcheService result = new ConcertResearcheService();
         for (int i=0; i<tableOfNames.length; i++) {
             try {
                 List<ConcertEventOfRequest> listOfEvents = result.researchOfConcerts(tableOfNames[i]);
-                int listLength = listOfEvents.size();
-                for (int j=0; j<listLength ; j++ ) {
-                    dataBase.add(new Artiste(listOfEvents.get(j).getVenue().getCity(),
-                            listOfEvents.get(j).getVenue().getPlace(),
-                            tableOfNames[i],
-                            listOfEvents.get(j).getDatetime() ));
-                  /* dataBase.add(new Artiste(tableOfArtistResearche[i],
-                           listOfEvents.get(j).getVenue().getPlace(),
-                           listOfEvents.get(j).getVenue().getCity(),
-                           listOfEvents.get(j).getVenue().getCountry(),
-                           listOfEvents.get(j).getDatetime() ));*/
+                for (ConcertEventOfRequest event : listOfEvents) {
+                    dataBase.add(new Artiste(tableOfNames[i], event.getVenue().getCity(),
+                            event.getVenue().getPlace(),
+                            event.getVenue().getCountry(),
+                            event.getDatetime() ));
                 }
             } catch (Exception e){
                 e.printStackTrace();

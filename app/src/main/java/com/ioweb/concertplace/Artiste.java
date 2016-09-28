@@ -1,71 +1,77 @@
 package com.ioweb.concertplace;
 
 import android.text.format.DateFormat;
-import android.widget.ListAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 /**
  * Created by Fly on 02/08/2016.
  */
 public class Artiste {
-    private String name;
-    private String genre;
+    private String nameOfArtiste;
+    private String country;
     private String place;
     private String city;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     private String date;
+
+    public static ArrayList<Artiste> getSchedul() {
+        return schedul;
+    }
+
+
+
+   private static ArrayList<Artiste> schedul = new ArrayList<Artiste>();
 
     public static String[] getTableOfArtistResearche() {
         return tableOfArtistResearche;
     }
 
-    private static String tableOfArtistResearche[] = {"Adele", "Amir", "The Fray", "Paradis", "Sia",
+    private static String tableOfArtistResearche [] = {"Adele", "Amir", "The Fray", "Paradis", "Sia",
             "Mika", "Maroon 5", "Mariah Carey", "Keen V", "Justin", "Justin Bieber", "Tove Lo", "Zaz", "Scorpions"  };
 
-    public Artiste (String city, String place, String name,  String date){
+    public Artiste (String name, String place, String city, String country,  String date){
         this.city = city;
         this.place = place;
-        this.name = name;
-        this.genre = genre;
+        this.nameOfArtiste = name;
+        this.country = country;
         this.date = date;
     }
 
     @Override
     public String toString() {
-        return name +" à " + city + ". " + place +". " + date;
+        return nameOfArtiste +" à " + place + ". " + city +". " + country + ". " + date;
+        //return nameOfArtiste;
     }
 
-    public static ArrayList<Artiste> getListOfArtistes  (){
-       // GetListOfArtistsRunnable runnable = new GetList...
-        GetConcertRunnable runnable = new GetConcertRunnable();
-        Thread thread = new Thread(runnable);
-        //Thread thread = new Thread(new Runnable());
+    public static ArrayList<Artiste> getListOfArtistes (String tabOfArtistsNames []){
 
+        GetConcertRunnable runnable = new GetConcertRunnable();
+        runnable.setTabOfNamesForSearch(tabOfArtistsNames) ;
+        Thread thread = new Thread(runnable);
         thread.start();
         try {
             thread.join();
-           // return runnable.getDataBase();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        schedul = runnable.dataBase;
 
-        /*dataBase.add(new Artiste("Lyon","Transbordeaur","The Pixies","rock","01/10/2016"));
-        dataBase.add(new Artiste("Lyon","Transbordeaur","AC/DC","rock","02/10/2016"));
-        dataBase.add(new Artiste("Lyon","Hall Tony Garnier","Jamiroquai","rock","03/10/2016"));
-        dataBase.add(new Artiste("Lyon","Hall Tony Garnier","Lanny Kravitz","rock","04/10/2016"));
-        dataBase.add(new Artiste("Toulouse","Bikini","Fat Freddy","rock","07/10/2016"));
-        dataBase.add(new Artiste("Toulouse","Bikini","The Wolves","rock","11/10/2016"));
-        dataBase.add(new Artiste("Toulouse","ZENITH","AC/DC","rock","07/11/2016"));
-        dataBase.add(new Artiste("Toulouse","ZENITH","Guns N Roses","rock","08/11/2016"));*/
         return runnable.getDataBase();
-        //return dataBase;
     }
 
     public static ArrayList<Artiste> sortListByArtistesName () {
-        ArrayList<Artiste> sortedNames = Artiste.getListOfArtistes();
+        ArrayList<Artiste> sortedNames = Artiste.getListOfArtistes(tableOfArtistResearche);
         Collections.sort(sortedNames, new Comparator<Artiste>() {
             @Override
             public int compare(Artiste lhs, Artiste rhs) {
@@ -78,6 +84,17 @@ public class Artiste {
 
     public static ArrayList<Artiste> getArtisteSchedul (){
          return favoriteArtisteSchedul;
+    }
+
+    public static ArrayList<Artiste> setArtisteSchedul (ArrayList<Artiste> listOfevents){
+        //ArrayList<Artiste> schedulOfArtist = new ArrayList<Artiste>();
+        //schedulOfArtist = listOfevents;
+        favoriteArtisteSchedul.clear();
+        for (int i=0; i<listOfevents.size(); i++){
+            favoriteArtisteSchedul.add(listOfevents.get(i));
+        }
+        //favoriteArtisteSchedul = listOfevents;
+        return favoriteArtisteSchedul;
     }
 
 
@@ -101,21 +118,21 @@ public class Artiste {
         this.place = place;
     }
 
-    public String getGenre() {
+    public String getCountry() {
 
-        return genre;
+        return country;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getName() {
-        return name;
+        return nameOfArtiste;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.nameOfArtiste = name;
     }
 
 

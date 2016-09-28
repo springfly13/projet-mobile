@@ -10,11 +10,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ArtistesFavoriteActivity extends ActionBarActivity  {
+import java.util.ArrayList;
+
+public class ArtistesFavoriteActivity extends ActionBarActivity {
 
     private DBManager dbManager;
 
@@ -22,10 +25,10 @@ public class ArtistesFavoriteActivity extends ActionBarActivity  {
 
     private SimpleCursorAdapter adapter;
 
-    final String[] from = new String[] { DatabaseHelper._ID,
-            DatabaseHelper.SUBJECT };
+    final String[] from = new String[]{DatabaseHelper._ID,
+            DatabaseHelper.SUBJECT};
 
-    final int[] to = new int[] { R.id.id, R.id.title };
+    final int[] to = new int[]{R.id.id, R.id.title};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,71 +54,67 @@ public class ArtistesFavoriteActivity extends ActionBarActivity  {
             public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
                 TextView titleTextView = (TextView) view.findViewById(R.id.title);
                 String title = titleTextView.getText().toString();
-                Toast.makeText(getApplicationContext(), "selected item "+title , Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "selected item " + title, Toast.LENGTH_SHORT).show();
+                String tabName[] = {title};
+                ArrayList<Artiste> favoriSchedul = new ArrayList<Artiste>();
+                favoriSchedul = Artiste.getSchedul();
+                //favoriSchedul = Artiste.getListOfArtistes(tabName);
 
-                for (int i=0; i<Artiste.getListOfArtistes().size(); i++){
-                    //String searcheName = Artiste.getListOfArtistes().get(i).getName();
-                    if (title.equals(Artiste.getListOfArtistes().get(i).getName())) {
-                        Artiste.getArtisteSchedul().add(Artiste.getListOfArtistes().get(i));
+                //Toast.makeText(getApplicationContext(), "res of search" + favoriSchedul, Toast.LENGTH_SHORT).show();
+
+                if (favoriSchedul.isEmpty() || favoriSchedul.size() == 0) {
+                    favoriSchedul = Artiste.getListOfArtistes(tabName);
+                    if (favoriSchedul.size() == 0 || favoriSchedul.isEmpty()) {
+                        Toast.makeText(getApplicationContext(), "L' artiste " + title + " n'a pas des concernts prochainement ", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Artiste.setArtisteSchedul(favoriSchedul);
+                        Intent intent = new Intent(getApplicationContext(), ArtisteFavoriteSchedulActivity.class);
+                        startActivity(intent);
                     }
-                }
-              //  Toast.makeText(getApplicationContext(), "was added "+Artiste.getArtisteSchedul().get(0).getName() , Toast.LENGTH_SHORT).show();
 
-                if (Artiste.getArtisteSchedul().isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "L' artiste " + title + " n'a pas des concernts prochainement ", Toast.LENGTH_SHORT).show();
                 } else {
-                    Intent intent = new Intent(getApplicationContext(), ArtisteFavoriteSchedulActivity.class);
-                    startActivity(intent);
+                    ArrayList<Artiste> listOfFavoriActivity = new ArrayList<Artiste>();
+                    for (int i = 0; i < favoriSchedul.size(); i++) {
+                        if (title.equals(favoriSchedul.get(i).getName())) {
+                            listOfFavoriActivity.add(favoriSchedul.get(i));
+                        }
+                    }
+                    if (listOfFavoriActivity.isEmpty() || listOfFavoriActivity.size() == 0) {
+                        listOfFavoriActivity = Artiste.getListOfArtistes(tabName);
+                        if (listOfFavoriActivity.isEmpty() || listOfFavoriActivity.size() == 0) {
+                            Toast.makeText(getApplicationContext(), "L' artiste " + title + " n'a pas des concernts prochainement ", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Artiste.setArtisteSchedul(listOfFavoriActivity);
+                            Intent intent = new Intent(getApplicationContext(), ArtisteFavoriteSchedulActivity.class);
+                            startActivity(intent);
+                        }
+                    } else {
+                        Artiste.setArtisteSchedul(listOfFavoriActivity);
+                        Intent intent = new Intent(getApplicationContext(), ArtisteFavoriteSchedulActivity.class);
+                        startActivity(intent);
+                    }
+                    ;
+
                 }
-
-
-                //Intent modify_intent = new Intent(getApplicationContext(), ModifyFavoriNameActivity.class);
-                //modify_intent.putExtra("title", title);
-                //modify_intent.putExtra("desc", desc);
-                //modify_intent.putExtra("id", id);
-
-               // startActivity(modify_intent);
             }
         });
-        /*  listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
-                //TextView idTextView = (TextView) view.findViewById(R.id.id);
-                TextView titleTextView = (TextView) view.findViewById(R.id.title);
-                //TextView descTextView = (TextView) view.findViewById(R.id.desc);
 
-               // String id = idTextView.getText().toString();
-                String title = titleTextView.getText().toString();
-                // String desc = descTextView.getText().toString();
-
-                Intent modify_intent = new Intent(getApplicationContext(), ModifyFavoriNameActivity.class);
-                modify_intent.putExtra("title", title);
-                //modify_intent.putExtra("desc", desc);
-                //modify_intent.putExtra("id", id);
-
-                startActivity(modify_intent);
-            }
-        }); */
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-           @Override
+            @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long viewId) {
                 TextView idTextView = (TextView) view.findViewById(R.id.id);
                 TextView titleTextView = (TextView) view.findViewById(R.id.title);
-                //TextView descTextView = (TextView) view.findViewById(R.id.desc);
 
                 String id = idTextView.getText().toString();
                 String title = titleTextView.getText().toString();
-                // String desc = descTextView.getText().toString();
 
                 Intent modify_intent = new Intent(getApplicationContext(), ModifyFavoriNameActivity.class);
-               //Toast.makeText(getApplicationContext(), "LE TITRE CHOISI "+title , Toast.LENGTH_SHORT).show();
                 modify_intent.putExtra("title", title);
-                //modify_intent.putExtra("desc", desc);
                 modify_intent.putExtra("id", id);
 
                 startActivity(modify_intent);
-               return true;
+                return true;
             }
         });
     }
