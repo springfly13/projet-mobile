@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -42,11 +43,12 @@
         android:text="Mon artiste favori"
         android:id="@+id/button4"
         android:onClick="onClick"
-        android:background="#70e776"
+        android:background="?attr/colorPrimaryDark"
         android:layout_marginTop="106dp"
         android:layout_marginEnd="6dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:textColor="#fbfcfd"/>
 
     <Button
         android:layout_width="80pt"
@@ -54,10 +56,11 @@
         android:text="Ma recherche"
         android:id="@+id/buttonArtistes"
         android:onClick="onClick"
-        android:background="#74dde4"
+        android:background="?attr/colorPrimaryDark"
         android:layout_marginStart="6dp"
         android:layout_marginTop="106dp"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="#fbfcfd" />
 
 
 </RelativeLayout>

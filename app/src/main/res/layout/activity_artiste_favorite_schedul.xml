@@ -4,10 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="0pt"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingLeft="0pt"
+    android:paddingRight="0pt"
     android:paddingTop="0dp"
     tools:context="com.ioweb.concertplace.ArtisteFavoriteSchedulActivity">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/background3"/>
 
     <ListView
         android:id="@+id/listView4"
