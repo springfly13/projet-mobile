@@ -33,6 +33,7 @@
         <activity android:name=".NosSuggestionsActivity" />
         <activity android:name=".ResearcheByArtistByCityActivity" />
         <activity android:name=".ArtisteFavoriteSchedulActivity" />
+        <activity android:name=".ImageDetailsActivity" />
         <activity android:name=".ArtistesSearcheProtocolActivity" />
 
     </application>

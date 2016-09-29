@@ -2,10 +2,12 @@ package com.ioweb.concertplace;
 
 import android.content.Intent;
 
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 
@@ -27,6 +29,19 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class ArtistesSearcheProtocolActivity extends AppCompatActivity implements View.OnClickListener {
+
+    //
+
+    public final static int LOOPS = 1000;
+    public CarouselPagerAdapter adapter;
+    public ViewPager pager;
+    public static int count = 10;    public static int FIRST_PAGE = 10;
+
+
+
+    //
+
+
 
     Button mButton;
     EditText mEdit;
@@ -151,6 +166,27 @@ public class ArtistesSearcheProtocolActivity extends AppCompatActivity implement
         buttonChooseArtistCity.setOnClickListener(this);
 
 
+        //caroussell
+
+        //
+        pager = (ViewPager) findViewById(R.id.myviewpager);        //set page margin between pages for viewpager
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int pageMargin = ((metrics.widthPixels / 4) * 2);
+        pager.setPageMargin(-pageMargin);
+        adapter = new CarouselPagerAdapter(this, getSupportFragmentManager());
+        pager.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        pager.addOnPageChangeListener(adapter);
+        // Set current item to the middle page so we can fling to both
+        // directions left and right
+        pager.setCurrentItem(FIRST_PAGE);
+        pager.setOffscreenPageLimit(3);
+
+
+        //
+
+
     }
 
     @Override
@@ -222,6 +258,14 @@ public class ArtistesSearcheProtocolActivity extends AppCompatActivity implement
                 } else {
                     Toast.makeText(ArtistesSearcheProtocolActivity.this, "S'il vous plait, faites votre choix" , Toast.LENGTH_SHORT).show();
                 }
+            }
+            break;
+
+            case R.id.linearLayout2: {
+
+                    Intent intent = new Intent(ArtistesSearcheProtocolActivity.this, ImageDetailsActivity.class);
+                    startActivity(intent);
+
             }
             break;
         }

@@ -42,18 +42,14 @@ public class ArtisteFavoriteSchedulActivity extends AppCompatActivity  {
 
         int id = item.getItemId();
         if (id == R.id.back) {
-
             Artiste.getArtisteSchedul().clear();
             Intent intentArtistes = new Intent(this, ArtistesFavoriteActivity.class);
             startActivity(intentArtistes);
-
         }
 
         if (id == R.id.home) {
-
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-
         }
         return super.onOptionsItemSelected(item);
     }
