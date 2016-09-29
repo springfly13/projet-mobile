@@ -3,6 +3,8 @@ package com.ioweb.concertplace;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,7 +13,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ArtisteFavoriteSchedulActivity extends AppCompatActivity implements View.OnClickListener {
+public class ArtisteFavoriteSchedulActivity extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,31 +28,36 @@ public class ArtisteFavoriteSchedulActivity extends AppCompatActivity implements
         listView.setAdapter(adapter1);
 
 
-        Button buttonAccueil = (Button) findViewById(R.id.buttonAccueil);
-        buttonAccueil.setOnClickListener((View.OnClickListener) this);
-
-        Button buttonArtistesFavori = (Button) findViewById(R.id.buttonBack);
-        buttonArtistesFavori.setOnClickListener((View.OnClickListener) this);
 
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.buttonAccueil: {
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-            }
-            break;
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.favschedul, menu);
+        return true;
+    }
 
-            case R.id.buttonBack: {
-                Artiste.getArtisteSchedul().clear();
-                Intent intentArtistes = new Intent(this, ArtistesFavoriteActivity.class);
-                startActivity(intentArtistes);
-            }
-            break;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == R.id.back) {
+
+            Artiste.getArtisteSchedul().clear();
+            Intent intentArtistes = new Intent(this, ArtistesFavoriteActivity.class);
+            startActivity(intentArtistes);
 
         }
 
+        if (id == R.id.home) {
+
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+
+        }
+        return super.onOptionsItemSelected(item);
     }
+
+
+
 }

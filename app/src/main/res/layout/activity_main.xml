@@ -12,6 +12,17 @@
     android:backgroundTintMode="src_in"
     tools:context=".NosSuggestionsActivity">
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/concert1"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:baselineAlignBottom="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/button5" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="40pt"
@@ -25,41 +36,28 @@
         android:textColor="#fbfcfd" />
 
 
-
     <Button
-        android:layout_width="93pt"
-        android:layout_height="30pt"
-        android:text="Ma recherche"
-        android:id="@+id/buttonArtistes"
-        android:onClick="onClick"
-        android:background="#74dde4"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="92pt"
+        android:layout_width="80pt"
         android:layout_height="30pt"
         android:text="Mon artiste favori"
         android:id="@+id/button4"
         android:onClick="onClick"
         android:background="#70e776"
+        android:layout_marginTop="106dp"
+        android:layout_marginEnd="6dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:src="@drawable/concert1"
-        android:scaleType="fitXY"
-        android:adjustViewBounds="true"
-        android:baselineAlignBottom="false"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/button5"
-        android:layout_below="@+id/button4"
-        android:layout_alignParentEnd="true" />
-
-
+    <Button
+        android:layout_width="80pt"
+        android:layout_height="30pt"
+        android:text="Ma recherche"
+        android:id="@+id/buttonArtistes"
+        android:onClick="onClick"
+        android:background="#74dde4"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="106dp"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

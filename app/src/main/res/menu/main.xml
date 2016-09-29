@@ -5,14 +5,14 @@
 
     <item
         android:id="@+id/add_record"
-        android:icon="@android:drawable/ic_menu_add"
+        android:icon="@drawable/ic_add_circle_white_24dp"
         android:orderInCategory="100"
         android:title="Ajouter un favori"
         app:showAsAction="always"/>
 
     <item
         android:id="@+id/home"
-        android:icon="@android:drawable/ic_media_play"
+        android:icon="@drawable/ic_home_white_24dp"
         android:orderInCategory="100"
         android:title="Home"
         app:showAsAction="always"/>

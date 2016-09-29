@@ -187,7 +187,7 @@ public class ArtistesSearcheProtocolActivity extends AppCompatActivity implement
                 selectedItem = getSelectedArtist();
 
                 if (!selectedItem.equals("") ) {
-                    Toast.makeText(ArtistesSearcheProtocolActivity.this, "Vous avez choisi : " + getSelectedArtist(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ArtistesSearcheProtocolActivity.this, "Vous avez choisi : " + selectedItem, Toast.LENGTH_SHORT).show();
                     ArrayList<Artiste> tab = new ArrayList<Artiste>();
                     for (int i = 0; i < listeOfAllEvents.size(); i++) {
                         if (listeOfAllEvents.get(i).getName().equals(selectedItem)) {
@@ -199,7 +199,7 @@ public class ArtistesSearcheProtocolActivity extends AppCompatActivity implement
                     Intent intent = new Intent(ArtistesSearcheProtocolActivity.this, ResearcheByArtistByCityActivity.class);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(ArtistesSearcheProtocolActivity.this, "S'il vous plait, faites votre choix" + selectedItem, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ArtistesSearcheProtocolActivity.this, "S'il vous plait, faites votre choix", Toast.LENGTH_SHORT).show();
                 }
             }
             break;
@@ -220,7 +220,7 @@ public class ArtistesSearcheProtocolActivity extends AppCompatActivity implement
                     Intent intent = new Intent(ArtistesSearcheProtocolActivity.this, ResearcheByArtistByCityActivity.class);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(ArtistesSearcheProtocolActivity.this, "S'il vous plait, faites votre choix" + getSelectedArtist(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ArtistesSearcheProtocolActivity.this, "S'il vous plait, faites votre choix" , Toast.LENGTH_SHORT).show();
                 }
             }
             break;

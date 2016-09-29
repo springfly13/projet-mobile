@@ -1,17 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginEnd="0dp"
+    android:background="#80f7d6f9"
+    android:backgroundTint="#f4a3c5"
     android:paddingBottom="0dp"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     tools:context=".ArtistesSearcheProtocolActivity">
 
-    <ListView
-        android:id="@+id/listView2"
+    <ImageView
+
+        android:layout_width="120pt"
+        android:layout_height="160pt"
+        android:scaleType="centerCrop"
+        android:src="@drawable/nuit_fourviere1"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+    <TextView
+
+    style="@style/ImageTitle"
+    android:text="@string/Fest2"
+    android:id="@+id/textView" />
+
+
+    <ImageView
+
+        android:id="@+id/swipe_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="450dp"
+        android:src="@drawable/swipe_left" />
+
+    <ImageView
+
+        android:id="@+id/swipe_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="450dp"
+        android:src="@drawable/swipe_right" />
+
+    <ViewFlipper
+
+        android:id="@+id/view_flipper"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textView2">
+
+        <RelativeLayout
+
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+
+                style="@style/ImageTitle"
+                android:text="@string/Fest3"
+                android:id="@+id/textView4" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+
+            <ImageView
+
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="340dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/rockenscene1" />
+
+            <TextView
+
+                style="@style/ImageTitle"
+                android:text="@string/Fest1" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+
+        </RelativeLayout>
+
+    </ViewFlipper>
+
+    <EditText
+        android:id="@+id/nameOfArtist"
+        android:layout_width="130pt"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5pt"
+        android:hint="Entrez le nome d'artiste"
+        android:textSize="7pt"
+        android:inputType="textEmailAddress" />
+
+    <RelativeLayout
+
+        android:id="@+id/spinner_wrapper"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="65dp"
+        android:background="#e01735">
+
+    </RelativeLayout>
+
+    <Button
+
+        android:id="@+id/choose_artist"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_below="@+id/spinner_wrapper"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="10dp"
+        android:background="#e01735"
+        android:onClick="onClick"
+        android:text="  Rechercher  " />
+
+
+    <RelativeLayout
+
+        android:id="@+id/spinner2_wrapper"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="190dp"
+        android:background="#e01735">
+
+        <Spinner
+
+            android:id="@+id/spinner2"
+            style="@style/spinner2_style"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:entries="@array/array_lieux"
+            android:gravity="center_horizontal" />
+
+    </RelativeLayout>
+
+
+    <Button
+
+        android:id="@+id/choose_lieu"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignStart="@+id/spinner2_wrapper"
+        android:layout_below="@+id/spinner2_wrapper"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="10dp"
+        android:background="#e01735"
+        android:onClick="onClick"
+        android:text="  Rechercher  " />
+
+    <Button
+
+        android:id="@+id/textInputOk"
+        android:layout_width="20pt"
+        android:layout_height="30dp"
+        android:layout_marginRight="112pt"
+        android:layout_marginTop="1pt"
+        android:background="#e01735"
+        android:onClick="onClick"
+        android:text="Ok"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/swipe_right" />
+
+    <TextView
+
+        android:id="@+id/textView2"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="1dp"
+        android:text="@string/Choisissez_un_lieu2"
+        android:textColor="#030303"
+        android:textSize="7pt"
+        android:layout_above="@+id/choose_lieu"
+        android:layout_alignStart="@+id/spinner2_wrapper"
+        android:layout_marginBottom="20dp" />
+
+    <Spinner
+
+        android:id="@+id/spinner"
+        style="@style/spinner_style"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="1dp"
+        android:text="@string/Choisissez_un_artiste2"
+        android:textColor="#030303"
+        android:textSize="7pt"
+        android:layout_below="@+id/nameOfArtist"
+        android:layout_alignStart="@+id/nameOfArtist" />
+
 
 </RelativeLayout>
+
+

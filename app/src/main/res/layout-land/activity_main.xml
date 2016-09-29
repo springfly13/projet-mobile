@@ -12,10 +12,23 @@
     android:backgroundTintMode="src_in"
     tools:context=".NosSuggestionsActivity">
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:src="@drawable/concert1"
+        android:scaleType = "centerCrop"
+        android:baselineAlignBottom="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/button5"
+        android:layout_alignParentEnd="true" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="40pt"
-        android:text="Programme (artistes A-Z)"
+        android:text="Nos suggestions du moment (artistes A-Z)"
         android:id="@+id/button5"
         android:onClick="onClick"
         android:layout_alignParentBottom="true"
@@ -25,37 +38,29 @@
         android:textColor="#fbfcfd" />
 
 
-
     <Button
-        android:layout_width="158pt"
-        android:layout_height="55pt"
+        android:layout_width="100pt"
+        android:layout_height="30pt"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:text="Ma recherche"
         android:id="@+id/buttonArtistes"
         android:onClick="onClick"
         android:background="#74dde4"
-        android:layout_above="@+id/button5"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/imageView1" />
+        android:layout_alignBottom="@+id/button4"
+        android:layout_alignParentTop="true" />
 
     <Button
-        android:layout_width="158pt"
-        android:layout_height="58pt"
+        android:layout_width="100pt"
+        android:layout_height="30pt"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
         android:text="Mon artiste favori"
         android:id="@+id/button4"
         android:onClick="onClick"
         android:background="#70e776"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/buttonArtistes" />
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-
-        android:adjustViewBounds="true"
-        android:src="@drawable/concert1"
-        android:baselineAlignBottom="false" />
+        android:layout_alignParentEnd="true" />
 
 
 
