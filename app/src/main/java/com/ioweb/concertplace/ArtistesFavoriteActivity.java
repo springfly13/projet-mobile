@@ -53,7 +53,7 @@ public class ArtistesFavoriteActivity extends ActionBarActivity {
 
                 TextView titleTextView = (TextView) view.findViewById(R.id.title);
                 String title = titleTextView.getText().toString();
-                Toast.makeText(getApplicationContext(), "selected item " + title, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Vous avez choisi :  " + title, Toast.LENGTH_SHORT).show();
                 String tabName[] = {title};
                 ArrayList<Artiste> favoriSchedul = new ArrayList<Artiste>();
                 favoriSchedul = Artiste.getSchedul();

@@ -33,7 +33,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:background="#e01735"
+        android:background="?attr/colorPrimaryDark"
         android:textColor="#fbfcfd" />
 
 
