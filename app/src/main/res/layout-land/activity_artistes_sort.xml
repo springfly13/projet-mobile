@@ -58,7 +58,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
 
@@ -83,9 +83,9 @@
 
         <Button
             android:id="@+id/choose_artist"
-            android:layout_width="wrap_content"
+            android:layout_width="20pt"
             android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="5dp"
             android:background="#e01735"
             android:onClick="onClick"
             android:text="  OK  "
@@ -97,7 +97,7 @@
             android:id="@+id/spinner2_wrapper"
             android:layout_width="200dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="50dp"
             android:background="#e01735">
 
             <Spinner
@@ -115,9 +115,9 @@
 
         <Button
             android:id="@+id/choose_lieu"
-            android:layout_width="wrap_content"
+            android:layout_width="20pt"
             android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="5dp"
             android:background="#e01735"
             android:onClick="onClick"
             android:text="  OK  "

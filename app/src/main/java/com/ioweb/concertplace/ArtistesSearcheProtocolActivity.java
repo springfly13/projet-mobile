@@ -35,12 +35,11 @@ public class ArtistesSearcheProtocolActivity extends AppCompatActivity implement
     public final static int LOOPS = 1000;
     public CarouselPagerAdapter adapter;
     public ViewPager pager;
-    public static int count = 10;    public static int FIRST_PAGE = 10;
-
+    public static int count = 10;
+    public static int FIRST_PAGE = 10;
 
 
     //
-
 
 
     Button mButton;
@@ -103,7 +102,6 @@ public class ArtistesSearcheProtocolActivity extends AppCompatActivity implement
 
         mButton = (Button) findViewById(R.id.textInputOk);
         mEdit = (EditText) findViewById(R.id.nameOfArtist);
-
 
 
         // Recherche par nome d'artist et ville avec les spinneurs
@@ -197,7 +195,7 @@ public class ArtistesSearcheProtocolActivity extends AppCompatActivity implement
                 Log.v("EditText", mEdit.getText().toString());
                 selectedItem = mEdit.getText().toString();
 
-                if ( !selectedItem.isEmpty()) {
+                if (!selectedItem.isEmpty()) {
                     Toast.makeText(ArtistesSearcheProtocolActivity.this, "Vous avez entre : " + selectedItem, Toast.LENGTH_SHORT).show();
                     ArrayList<Artiste> tab = new ArrayList<Artiste>();
                     for (int i = 0; i < listeOfAllEvents.size(); i++) {
@@ -208,12 +206,16 @@ public class ArtistesSearcheProtocolActivity extends AppCompatActivity implement
                     if (tab.size() == 0 || tab.isEmpty()) {
                         String[] tab2 = {selectedItem};
                         tab = Artiste.getListOfArtistes(tab2);
-
                     }
-                    Artiste.getDepotResultOfSearch().clear();
-                    Artiste.setDepotResultOfSearch(tab);
-                    Intent intent = new Intent(ArtistesSearcheProtocolActivity.this, ResearcheByArtistByCityActivity.class);
-                    startActivity(intent);
+                    if (tab.isEmpty() || tab.size() == 0) {
+                        Toast.makeText(ArtistesSearcheProtocolActivity.this, "Artiste inconnu", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Artiste.getDepotResultOfSearch().clear();
+                        Artiste.setDepotResultOfSearch(tab);
+                        Intent intent = new Intent(ArtistesSearcheProtocolActivity.this, ResearcheByArtistByCityActivity.class);
+                        startActivity(intent);
+                    }
+
                 } else {
                     Toast.makeText(ArtistesSearcheProtocolActivity.this, "S'il vous plait, entrez le nom d'artiste", Toast.LENGTH_SHORT).show();
                 }
@@ -222,7 +224,7 @@ public class ArtistesSearcheProtocolActivity extends AppCompatActivity implement
             case R.id.choose_artist: {
                 selectedItem = getSelectedArtist();
 
-                if (!selectedItem.equals("") ) {
+                if (!selectedItem.equals("")) {
                     Toast.makeText(ArtistesSearcheProtocolActivity.this, "Vous avez choisi : " + selectedItem, Toast.LENGTH_SHORT).show();
                     ArrayList<Artiste> tab = new ArrayList<Artiste>();
                     for (int i = 0; i < listeOfAllEvents.size(); i++) {
@@ -243,7 +245,7 @@ public class ArtistesSearcheProtocolActivity extends AppCompatActivity implement
                 selectedItem = "";
                 selectedItem = getSelectedArtistCity();
 
-                if (!selectedItem.equals("") ) {
+                if (!selectedItem.equals("")) {
                     Toast.makeText(ArtistesSearcheProtocolActivity.this, "Vous avez choisi : " + selectedItem, Toast.LENGTH_SHORT).show();
                     ArrayList<Artiste> tab = new ArrayList<Artiste>();
                     for (int i = 0; i < listeOfAllEvents.size(); i++) {
@@ -256,15 +258,15 @@ public class ArtistesSearcheProtocolActivity extends AppCompatActivity implement
                     Intent intent = new Intent(ArtistesSearcheProtocolActivity.this, ResearcheByArtistByCityActivity.class);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(ArtistesSearcheProtocolActivity.this, "S'il vous plait, faites votre choix" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ArtistesSearcheProtocolActivity.this, "S'il vous plait, faites votre choix", Toast.LENGTH_SHORT).show();
                 }
             }
             break;
 
             case R.id.linearLayout2: {
 
-                    Intent intent = new Intent(ArtistesSearcheProtocolActivity.this, ImageDetailsActivity.class);
-                    startActivity(intent);
+                Intent intent = new Intent(ArtistesSearcheProtocolActivity.this, ImageDetailsActivity.class);
+                startActivity(intent);
 
             }
             break;
