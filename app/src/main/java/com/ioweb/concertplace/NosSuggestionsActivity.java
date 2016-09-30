@@ -21,7 +21,6 @@ public class NosSuggestionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new);
         ListView listView = (ListView)findViewById(R.id.listView1);
-        //String [] tab = {"Adele"};
         ArrayList<Artiste> schedulGeneral = Artiste.getSchedul();
         ArrayList<Artiste> listNames = new ArrayList<Artiste>();
         if (schedulGeneral.size()==0 || schedulGeneral.isEmpty()){
@@ -36,13 +35,6 @@ public class NosSuggestionsActivity extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter<Artiste>(
                     this, android.R.layout.simple_expandable_list_item_1, listNames);
         listView.setAdapter(adapter);
-        //ArrayList<Artiste> listNamesSort = Artiste.sortListByArtistesName();
-       /* ArrayAdapter adapter1 = new ArrayAdapter<Artiste>(
-                this, android.R.layout.simple_expandable_list_item_1, listNamesSort);
-        listView.setAdapter(adapter1);*/
-
-
-
     }
 
     @Override
@@ -61,10 +53,9 @@ public class NosSuggestionsActivity extends AppCompatActivity {
             ArrayList<Artiste> responseOfCall = Artiste.getListOfArtistes(Artiste.getTableOfArtistResearche());
             ArrayList<Artiste> listNames = Artiste.sortListByArtistesName(responseOfCall);
             Artiste.setArtisteSchedul(listNames);
-            Toast.makeText(getApplicationContext(), "New list ", Toast.LENGTH_SHORT).show();
-
             Intent update = new Intent(getApplicationContext(), NosSuggestionsActivity.class);
             startActivity(update);
+            Toast.makeText(getApplicationContext(), "Reactualisation ", Toast.LENGTH_SHORT).show();
 
         }
 
